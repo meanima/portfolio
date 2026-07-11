@@ -8,33 +8,26 @@
 </head>
 
 <body>
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
-      <div class="brand-wrap reveal-right">
+  <canvas id="page-canvas"></canvas>
+    <aside class="sidebar glass-card" id="sidebar">
+      <div class="sidebar-logo">
         <img class="brand-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
-        <a class="brand" href="#home">Minima</a>
       </div>
 
-      <nav class="site-nav reveal-right" id="site-nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Expand navigation">
+        <span class="arrow">›</span>
+      </button>
+
+      <nav class="sidebar-nav">
+        <a href="#home"><span class="icon">🏠</span><span class="label">Home</span></a>
+        <a href="#about"><span class="icon">👤</span><span class="label">About</span></a>
+        <a href="#projects"><span class="icon">💼</span><span class="label">Projects</span></a>
+        <a href="#skills"><span class="icon">🛠️</span><span class="label">Skills</span></a>
+        <a href="#contact"><span class="icon">✉️</span><span class="label">Contact</span></a>
       </nav>
 
-      <div class="toggles reveal-left">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
-      </div>
-      
-    </div>
-  </header>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    </aside>
 
   <main>
     <section id="home" class="hero">
@@ -75,7 +68,6 @@
     </section>
 
     <section id="about" class="section section-light">
-      <canvas id="about-canvas" class="section-canvas"></canvas>
       <div class="container section-inner reveal">
         <h2>About</h2>
         <p class="reveal-left">{{ about.bio }}</p>
@@ -90,7 +82,6 @@
     </section>
 
     <section id="projects" class="section section-dark">
-      <canvas id="projects-canvas" class="section-canvas"></canvas>
       <div class="container section-inner">
         <h2 class="reveal-left">Projects</h2>
         <div class="project-grid">
@@ -111,7 +102,6 @@
     </section>
 
     <section id="skills" class="section section-light">
-      <canvas id="skills-canvas" class="section-canvas"></canvas>
       <div class="container section-inner">
         <h2>Skills</h2>
         <div class="skill-list">
@@ -126,7 +116,6 @@
     </section>
 
     <section id="contact" class="section section-dark">
-      <canvas id="contact-canvas" class="section-canvas"></canvas>
       <div class="container section-inner contact-section">
         <h2>Get in Touch</h2>
         <p>If you’d like to collaborate or want help with a data project, send an email or connect on LinkedIn.</p>
@@ -139,9 +128,11 @@
     <div class="container footer-inner">© 2026 Benjamin Kadiri</div>
   </footer>
 
-  <script src = "{{ url_for('static', filename = 'circuit.js') }}"></script>
-
   <script src = "{{ url_for('static', filename = 'circles.js') }}"></script>
+
+  <script src = "{{ url_for('static', filename = 'sidebar.js') }}"></script>
+
+  <script src = "{{ url_for('static', filename = 'circuit.js') }}"></script>
 
   <script src="{{ url_for('static', filename = 'typewriter.js') }}"></script>
 

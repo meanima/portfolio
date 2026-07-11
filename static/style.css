@@ -16,6 +16,7 @@
   --c3: #425751;
   --c4: #ffffff;      /* main text flips to white */
   --c5: #3a3e44;       /* terminal/panel background: a lighter dark, for contrast against the page */
+  --c6: #ffffff;
   --c7: var(--c1);   /* page background flips to your dark tone */
   --overlay-bg: rgba(48, 51, 56, 0.9); /* dark, semi-transparent version of the old white overlay */
   --cta-bg: #ffcc23;
@@ -23,10 +24,31 @@
 
 body {
   margin: 0;
+  padding-top: 0;
+  padding-left: 72px;
   background-color: var(--c7);
   color: var(--c4);
   font-family: Inter, system-ui, sans-serif;
   line-height: 1.6;
+}
+
+#page-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.section {
+  position: relative;
+  background: transparent; /* let the page canvas show through */
+}
+
+.section-inner {
+  position: relative;
+  z-index: 1; /* keeps content above the canvas */
 }
 
 * {
@@ -45,11 +67,95 @@ a {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 10;
-  background: var(--c7);
   box-shadow: 0 2px 8px var(--c5);
+  transition: transform 0.3s ease;
+}
+
+.site-header.header-hidden {
+  transform: translateY(-100%);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 48px; /* collapsed: icon-only width */
+  /* background: var(--c7); */
+  box-shadow: 2px 0 8px var(--c5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 24px;
+  z-index: 20;
+  transition: width 0.8s ease;
+  overflow: hidden; /* hides labels until there's room to show them */
+}
+
+.sidebar.expanded {
+  width: 160px; /* wide enough for icon + label side by side */
+  align-items: flex-start;
+  padding-left: 16px;
+}
+
+.sidebar-logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: 1px solid var(--c2);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s ease;
+}
+
+.sidebar.expanded .sidebar-toggle .arrow {
+  display: inline-block;
+  transform: rotate(180deg); /* arrow flips to point left when expanded */
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  white-space: nowrap; /* keeps label from wrapping awkwardly during the transition */
+}
+
+.sidebar-nav a .icon {
+  font-size: 1.3rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.sidebar-nav a .label {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar.expanded .sidebar-nav a .label {
+  opacity: 1;
 }
 
 .header-inner {
@@ -64,6 +170,7 @@ a {
   display:flex;
   align-items:center;
   gap:12px;
+  cursor: pointer;
 }
 
 .brand-logo {
@@ -86,6 +193,8 @@ a {
 .site-nav {
   display: flex;
   flex-wrap: wrap;
+  min-width: 50%;
+  justify-content: space-between;
   gap: 24px;
   align-items:center;
 }
@@ -128,6 +237,11 @@ a {
   border: 1px solid var(--c2);
   border-radius: 50%;
   background: transparent;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--c6);
 }
 
 .nav-toggle {
@@ -144,7 +258,7 @@ a {
   height:2px;
   background:var(--c2);
   margin:4px 0;
-  transition:transform .2s ease, opacity .2s ease;
+  transition:transform .8s ease, opacity .8s ease;
 }
 
 .site-header.open .nav-toggle .bar:nth-child(1) {
@@ -176,27 +290,6 @@ a {
   width: 100%;
   height: 100%;
   z-index: -1;
-}
-
-.section {
-  position: relative;
-  /* overflow: hidden; */
-  padding: 2rem 0;
-  transform: translateZ(0)
-}
-
-.section-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.section-inner {
-  position: relative;
-  z-index: 1; /* keeps content above the canvas */
 }
 
 .hero-inner {
@@ -343,7 +436,8 @@ a {
 
 .cta-button:hover {
   transform: translateY(-2px);
-  /* background: var(--c3); */
+  background: var(--c3);
+  color: var(--c2);
 }
 
 .reveal {
@@ -516,8 +610,7 @@ a {
     position:absolute;
     top:73px;
     right:0;
-    background: var(--c7);
-    width: 30%;
+    min-width: 25%;
     padding:12px 18px;
     border-radius:0 0 0 12px;
     flex-direction:column;

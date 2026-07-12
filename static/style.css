@@ -32,14 +32,6 @@ body {
   line-height: 1.6;
 }
 
-div {
-  transition: transform 1s ease;
-}
-
-div:hover {
-  transform: translateY(-10px);
-}
-
 #page-canvas {
   position: fixed;
   top: 0;
@@ -47,16 +39,6 @@ div:hover {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-}
-
-.section {
-  position: relative;
-  background: transparent; /* let the page canvas show through */
-}
-
-.section-inner {
-  position: relative;
-  z-index: 1; /* keeps content above the canvas */
 }
 
 * {
@@ -84,14 +66,12 @@ a {
   top: 0;
   left: 0;
   height: 100vh;
-  width: 42px; /* collapsed: icon-only width */
-  /* background: var(--c7); */
+  width: 42px;
   box-shadow: 2px 0 8px var(--c5);
   justify-content: space-between;
   align-items: center;
   padding: 20px 0 2rem;
   z-index: 20;
-  transition: width 0.8s ease;
   overflow: hidden; /* hides labels until there's room to show them */
 }
 
@@ -114,6 +94,7 @@ a {
 .sidebar.expanded {
   width: 120px; /* wide enough for icon + label side by side */
   align-items: center;
+  transition: ease-in .4s;
   /* padding-left: 16px; */
 }
 
@@ -164,7 +145,7 @@ a {
   margin: auto;
 }
 
-.sidebar-nav a, .sidebar-logo {
+.sidebar-nav a, .sidebar-logo, .theme-nav, .sidebar-nav-item {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -182,30 +163,29 @@ a {
   /* width: 20px; */
   text-align: center;
   color: var(--c4);
-  /*flex-shrink: 0; /* never let the icon itself shrink to make room for the label */
 }
 
-.brand-logo, .sidebar a .icon {
+.brand-logo, .sidebar a .icon, .theme-toggle, .sidebar-nav-item .icon {
   margin-left: 12px;
 }
 
-.sidebar.expanded .brand-logo, .sidebar.expanded .sidebar-nav a .icon {
+.sidebar.expanded .brand-logo, .sidebar.expanded .sidebar-nav a .icon, .sidebar.expanded .theme-nav .theme-toggle, .sidebar.expanded .sidebar-nav-item .icon {
   margin-left: -12px;
 }
 
-.sidebar-nav a .label, .sidebar-logo .label {
+.sidebar-nav a .label, .sidebar-logo .label, .theme-nav .label, .sidebar-nav-item .label {
   opacity: 0;
   width: 0;
   overflow: hidden;
   transition: opacity 0.2s ease, width 0.2s ease;
 }
 
-.sidebar.expanded .sidebar-nav a .label, .sidebar.expanded .sidebar-logo .label{
+.sidebar.expanded .sidebar-nav a .label, .sidebar.expanded .sidebar-logo .label, .sidebar.expanded .theme-nav .label, .sidebar.expanded .sidebar-nav-item .label {
   opacity: 1;
   width: auto;
 }
 
-.sidebar.expanded .sidebar-nav a .label {
+.sidebar.expanded .sidebar-nav a .label, .sidebar.expanded .theme-nav .label, .sidebar.expanded .sidebar-nav-item .label {
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--c4);
@@ -258,7 +238,7 @@ a {
 }
 
 .hero {
-  min-height: calc(100vh - 72px);
+  min-height: 100vh;
   width: 100%;
   display: grid;
   align-items: center;
@@ -394,6 +374,7 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: transform 1s ease;
 }
 
 .hero-description {
@@ -403,6 +384,10 @@ a {
   color: var(--c4);
   /* background-color: var(--overlay-bg); */
   padding: 0.4rem 0.6rem;
+}
+
+.hero-desc-row span.reveal-right {
+  display: inline-block; /* so transform/transition actually apply correctly on this wrapper */
 }
 
 .cta-button {
@@ -416,15 +401,11 @@ a {
   border: 2px solid var(--c2);
   color: var(--c2);
   font-weight: 600;
-  transition: transform .4s ease, background .4s ease;
-}
-
-.hero-desc-row span.reveal-right {
-  display: inline-block; /* so transform/transition actually apply correctly on this wrapper */
+  transition: transform .8s ease, background .8s ease;
 }
 
 .cta-button:hover {
-  transform: translateX(-10px);
+  transform: translateY(-5px);
   border: none;
   background: var(--c2);
   color: var(--c3);
@@ -463,11 +444,19 @@ a {
   transform: translateX(0);
 }
 
+.section {
+  position: relative;
+  padding: 2rem 0 6rem;
+  border-top: 0.3px dashed var(--c6);
+}
+
 .section-inner {
+  position: relative;
+  z-index: 1; /* keeps content above the canvas */
   max-width: 80%;
   margin: 0 auto;
   display: grid;
-  gap: 22px;
+  gap: 1.5rem;
 }
 
 .section-inner h2 {
@@ -483,59 +472,120 @@ a {
   color: var(--c4);
 }
 
-.focus-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.toolkit-grid {
+  margin: 1.5rem 0 3rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 10px;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
-.focus-card {
-  padding: 18px 22px;
+.toolkit-card {
+  min-width: 332px;
+  padding: 20px;
 }
 
-.focus-card p {
-  margin: 0;
+.toolkit-card h3 {
+  text-align: center;
+  margin-top: 0;
   color: var(--c4);
 }
 
-.focus-list li {
-  color: var(--c1);
-  font-weight: bolder;
+.toolkit-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--c4);
 }
 
-.project-grid {
+.resume, .email {
+  display: block;
+  width:fit-content;
+  margin: 0 auto;
+}
+
+.resume.cta-button:hover, .email.cta-button:hover  {
+  transform: translateY(-8px);
+  border: none;
+  background: var(--c2);
+  color: var(--c3);
+}
+
+.project-block {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  gap: 1.6rem;
+  margin-bottom: 48px;
+}
+
+.project-title {
+  margin: 0;
+  font-size: 1.2rem;
 }
 
 .project-card {
+  display: flex;
+  gap: 1.3rem;
+  /* justify-content: space-between; */
+  /* align-items: flex-start; */
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
   border-radius: 20px;
   padding: 26px;
 }
 
-.project-card h3 {
-  margin-top: 0;
+.project-card h4 {
+  width: 20%;
+  height:fit-content;
+  font-weight: bolder;
+  text-align: center;
+  align-self: flex-start;
+  padding: 6px 10px;
+  border-radius: .8rem;
+  border: .6px solid var(--c4);
+}
+
+.project-card p {
+  width: 100%;
+  text-align: left;
+}
+
+.notebook-embed {
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1.3px solid var(--c2);
+}
+
+.notebook-embed iframe {
+  width: 100%;
+  height: 320px;
+  border: none;
+  display: block;
+}
+
+.project-links {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-links .cta-button {
+  padding: 6px 10px; 
 }
 
 .skill-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   gap: 12px;
 }
 
 .skill-list span {
   display: inline-flex;
-  padding: 10px 14px;
-  border-radius: 999px;
+  padding: 5px 14px;
+  border-radius: 13px;
   background: rgba(58, 158, 244, 0.15);
-  color: #d7e7ff;
+  color: var(--c2);
   font-size: 0.95rem;
 }
 
@@ -543,12 +593,16 @@ a {
   text-align: center;
 }
 
+.email {
+  padding: 6px 24px;
+}
+
 .footer {
   padding: 24px 0;
   text-align: center;
-  color: #7a8aa4;
+  color: var(--c7);
   font-size: 0.95rem;
-  background: #0d131c;
+  background: var(--c4);
 }
 
 
@@ -583,6 +637,14 @@ a {
 
   .hero-image {
     width: 50%;
+  }
+
+  .project-card h4 {
+    width: 25%;
+  }
+
+  .notebook-embed iframe {
+    height: 400px;
   }
 }
 
@@ -621,6 +683,23 @@ a {
   
   .hero-description{
     margin:0 16px 0 0;
+  }
+
+  .project-card h4 {
+    width: fit-content;
+  }
+}
+
+
+
+
+@media (max-width: 720px) {
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-card h4 {
+    align-self: center;
   }
 }
 
@@ -662,12 +741,50 @@ a {
     height: 1.25rem;
   }
 
-  .hero-description {
-    font-size: 0.9rem;
+  .hero-description, .section p, .skill-list span, .footer, .resume, .email, .project-links a {
+    font-size: 0.8rem;
   }
 
-  .project-grid {
-    grid-template-columns: 1fr;
+  .resume, .email, .skill-list span, .project-links a {
+    padding: 4px 13px;
+  }
+
+  .section-inner h2 {
+    font-size: 1.4rem;
+  }
+
+  .project-title {
+    font-size: 1rem;
+  }
+
+  .project-card h4 {
+    font-size: 0.8rem;
+  }
+
+  .project-block {
+    gap: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .project-card {
+    gap: 0.8rem;
+    padding: 18px;
+  }
+
+  .skill-list {
+    gap: 8px;
+  }
+
+  .skill-list span {
+    border-radius: 8px;
+  }
+
+  .email {
+    padding: 4px 18px;
+  }
+
+  .footer {
+    padding: 8px 0;
   }
 }
 

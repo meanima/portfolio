@@ -12,10 +12,10 @@
     <aside class="sidebar glass-card" id="sidebar">
       <div class="navbar">
         <div class="logo">
-          <div class="sidebar-logo">
+          <a class="sidebar-logo" href="#home">
             <img class="brand-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
             <span class="label">Minima</span>
-          </div>
+          </a>
 
           <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Expand navigation">
             <span class="arrow">›</span>
@@ -42,7 +42,16 @@
         </nav>
       </div>
 
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="sidebar-nav-item" href="{{ url_for('static', filename='files/kadiri_resume.pdf') }}" download>
+        <span class="icon">⬇️</span>
+        <span class="label">Resume</span>
+      </a>
+
+      <div class="theme-nav">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <span class="label">Theme</span>
+      </div>
+      
     </aside>
 
   <main>
@@ -88,41 +97,67 @@
     <section id="about" class="section section-light">
       <div class="container section-inner reveal">
         <h2>About</h2>
-        <p class="reveal-left">{{ about.bio }}</p>
-        <ul class="focus-list">
-          {% for item in about.focus %}
-          <li class="focus-card glass-card reveal-right">
-            <p>{{ item }}</p>
-          </li>
+        <p class="reveal-left">{{ about.hook }}</p>
+        <p class="reveal-left" style="font-style: italic;">{{ about.philosophy }}</p>
+        <p class="reveal-left">{{ about.story }}</p>
+
+        <div class="toolkit-grid">
+          {% for group in about.toolkit %}
+          <div class="toolkit-card glass-card reveal-right">
+            <h3>{{ group.category }}</h3>
+            <ul>
+              {% for item in group.tools %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
           {% endfor %}
-        </ul>
+        </div>
       </div>
+
+      <a class="cta-button resume reveal" href="{{ url_for('static', filename='files/resume.pdf') }}" download>Download Resume </a>
     </section>
 
     <section id="projects" class="section section-dark">
       <div class="container section-inner">
         <h2 class="reveal-left">Projects</h2>
-        <div class="project-grid">
-          <article class="project-card glass-card reveal">
-            <h3>Sales Forecasting</h3>
-            <p>Built a time series model to forecast product demand and support better planning.</p>
-          </article>
-          <article class="project-card glass-card reveal">
-            <h3>Customer Segmentation</h3>
-            <p>Grouped customers by behavior using clustering and created actionable segments.</p>
-          </article>
-          <article class="project-card glass-card reveal">
-            <h3>Dashboard Prototype</h3>
-            <p>Designed a dashboard to highlight KPIs and trends for data-driven decisions.</p>
-          </article>
+        {% for project in projects %}
+        <div class="project-block">
+          <h3 class="project-title reveal">{{ project.title }}</h3>
+
+          <div class="project-card glass-card reveal">
+            <h4>The Problem</h4>
+            <p class="project-statement">{{ project.problem }}</p>
+          </div>
+
+          <div class="project-card glass-card reveal">
+            <h4>The Solution</h4>
+            <p class="project-statement">{{ project.solution }}</p>
+          </div>
+
+          <div class="project-card glass-card reveal">
+            <h4>The Modeling</h4>
+              {% if project.notebook_url %}
+            <div class="notebook-embed glass-card reveal">
+              <iframe src="{{ url_for('static', filename=project.notebook_url) }}" loading="lazy" title="{{ project.title }} notebook"></iframe>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="project-links reveal">
+            <a class="cta-button" href="{{ project.live_url }}" target="_blank">Live App ↗</a>
+            <a class="cta-button" href="{{ project.kaggle_url }}" target="_blank">Dataset ↗</a>
+            <a class="cta-button" href="{{ project.github_url }}" target="_blank">GitHub ↗</a>
+          </div>
         </div>
+        {% endfor %}
       </div>
     </section>
 
-    <section id="skills" class="section section-light">
+    <section id="skills" class="section section-light reveal-left">
       <div class="container section-inner">
         <h2>Skills</h2>
-        <div class="skill-list">
+        <div class="skill-list reveal-right">
           <span>Python</span>
           <span>pandas</span>
           <span>scikit-learn</span>
@@ -133,11 +168,11 @@
       </div>
     </section>
 
-    <section id="contact" class="section section-dark">
+    <section id="contact" class="section section-dark reveal">
       <div class="container section-inner contact-section">
         <h2>Get in Touch</h2>
         <p>If you’d like to collaborate or want help with a data project, send an email or connect on LinkedIn.</p>
-        <a class="cta-button" href="mailto:benjamin@example.com">Email Me</a>
+        <a class="cta-button email reveal-right" href="mailto:hello.kadiri@outlook.com">Email Me</a>
       </div>
     </section>
   </main>

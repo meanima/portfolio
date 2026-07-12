@@ -446,7 +446,7 @@ a {
 
 .section {
   position: relative;
-  padding: 2rem 0 6rem;
+  padding: 3em 0 6em;
   border-top: 0.3px dashed var(--c6);
 }
 

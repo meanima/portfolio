@@ -4,7 +4,7 @@ from email.message import EmailMessage
 from dotenv import load_dotenv
 from flask import Flask, render_template, flash, request, redirect
 
-load_dotenv()
+# load_dotenv()
 
 # Creating the web application instance
 app = Flask(__name__)

@@ -9,7 +9,16 @@ load_dotenv()
 # Creating the web application instance
 app = Flask(__name__)
 
-app.secret_key = os.environ.get("key", "dev-only-change-this")
+app.secret_key = os.environ.get("flsk_scrt_key")
+
+if not app.secret_key:
+  if app.debug:
+    # Secure enough for local development, but prints a warning
+    print("WARNING: Running with a temporary dev secret key!")
+    app.secret_key = "temporary-dev-key-never-use-in-production"
+  else:
+    # Hard-crushes the app in production if the key is missing
+    raise ValueError("No flask key set in production environment!")
 
 # Telling the web application this is the home page and what to do when someone visits it 
 @app.route("/")
@@ -111,14 +120,13 @@ def contact():
     """)
 
   try:
-      with smtplib.SMTP("smtp.gmail.com", 587) as server:
-          server.starttls()
-          server.login(os.environ.get("email"), os.environ.get("pass"))
-          server.send_message(msg)
-      flash("Thanks! Your message has been sent — I'll get back to you soon.", "Success!!")
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(os.environ.get("email"), os.environ.get("pass"))
+        server.send_message(msg)
   except Exception as e:
-      print(f"Email send failed: {e}")
-      return render_template("error.html")
+    print(f"Email send failed: {e}")
+    return render_template("error.html")
 
   # return redirect("/#contact")
   return render_template("delivered.html")

@@ -11,15 +11,6 @@ app = Flask(__name__)
 
 app.secret_key = os.environ.get("flsk_scrt_key")
 
-if not app.secret_key:
-  if app.debug:
-    # Secure enough for local development, but prints a warning
-    print("WARNING: Running with a temporary dev secret key!")
-    app.secret_key = "temporary-dev-key-never-use-in-production"
-  else:
-    # Hard-crushes the app in production if the key is missing
-    raise ValueError("No flask key set in production environment!")
-
 # Telling the web application this is the home page and what to do when someone visits it 
 @app.route("/")
 def home():

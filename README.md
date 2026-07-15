@@ -17,4 +17,4 @@ Quick start
 
 Notes:
 - Images are in `static/images/`.
-- If you want me to deploy this, I can prepare a deploy-ready config for Render or Railway.
+

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benjamin Kadiri - Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.svg') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon.svg') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
@@ -94,6 +96,8 @@
       </div>
     </section>
 
+    <hr>
+
     <section id="about" class="section section-light">
       <div class="container section-inner reveal">
         <h2>About</h2>
@@ -117,6 +121,8 @@
 
       <a class="cta-button resume reveal" href="{{ url_for('static', filename='files/kadiri_resume.pdf') }}" download>Download Resume </a>
     </section>
+
+    <hr>
 
     <section id="projects" class="section section-dark">
       <div class="container section-inner">
@@ -154,25 +160,147 @@
       </div>
     </section>
 
-    <section id="skills" class="section section-light reveal-left">
+    <hr>
+
+    <section id="skills" class="section section-light">
       <div class="container section-inner">
-        <h2>Skills</h2>
-        <div class="skill-list reveal-right">
-          <span>Python</span>
-          <span>pandas</span>
-          <span>scikit-learn</span>
-          <span>Machine Learning</span>
-          <span>Data Visualization</span>
-          <span>SQL</span>
+        <h2 class="reveal-left">Skills</h2>
+
+        <div class="skills-list">
+          {% for skill in skills %}
+          <div class="skill-row reveal">
+            <div class="skill-label reveal-left">
+              <span class="skill-name">{{ skill.name }}</span>
+              <span class="skill-stars">
+                {% set star_count = (skill.percent // 20) + skill.stars %}
+                {% for i in range(1, 6) %}
+                  {% if i <= star_count %}★{% else %}☆{% endif %}
+                {% endfor %}
+              </span>
+            </div>
+            <div class="skill-bar-track reveal-right">
+              <div class="skill-bar-fill" data-percent="{{ skill.percent }}">
+                <span class="skill-percent">{{ skill.percent }}%</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
         </div>
+
+        <div class="cert-content">
+          <h3 class="reveal-left" style="margin-top: 48px; text-align: center;">Certifications</h3>
+          <div class="certifications-grid">
+            {% for cert in certifications %}
+            <div class="cert-card">
+              <p class="cert-issuer">{{ cert.issuer }}</p>
+              <img class="cert glass-card" src="{{ url_for('static', filename=cert.image) }}" alt="{{ cert.issuer }}">
+              <p class="cert-credential">{{ cert.credential }}</p>
+            </div>
+            {% endfor %}
+
+
+            {% for cert in certifications %}
+            <div class="cert-card">
+              <p class="cert-issuer">{{ cert.issuer }}</p>
+              <img class="cert glass-card" src="{{ url_for('static', filename=cert.image) }}" alt="{{ cert.issuer }}">
+              <p class="cert-credential">{{ cert.credential }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div> 
       </div>
     </section>
 
-    <section id="contact" class="section section-dark reveal">
+    <hr>
+
+    <section id="reviews" class="section section-dark">
+      <div class="container section-inner">
+        <h2 class="reveal-left">What People Say</h2>
+
+        <div class="carousel" id="review-carousel">
+          <div class="carousel-track" id="carousel-track">
+            {% for review in reviews %}
+            <div class="review-card">
+              <img class="review-avatar" src="{{ url_for('static', filename=review.image) }}" alt="{{ review.name }}">
+              <div class="review-stars reveal-left">
+                {% for i in range(1, 6) %}
+                  {% if i <= review.stars %}★{% else %}☆{% endif %}
+                {% endfor %}
+              </div>
+              <div class="review glass-card reveal">
+                <p class="review-comment">"{{ review.comment }}"</p>
+                <p class="review-name">{{ review.name }}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+    </section>
+
+    <hr>
+
+    <section id="contact" class="section section-dark">
       <div class="container section-inner contact-section">
         <h2>Get in Touch</h2>
-        <p>If you’d like to collaborate or want help with a data project, send an email or connect on LinkedIn.</p>
-        <a class="cta-button email reveal-right" href="mailto:hello.kadiri@outlook.com">Email Me</a>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, msg in messages %}
+            <div class="flash-message flash-{{ category }}">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <p>If you'd like to collaborate or want help with a data project, send an email or fill out the form below.</p>
+
+        <div class="contact-flex">
+          <div class="contact-map glass-card reveal-left">
+            <iframe
+              src="https://www.google.com/maps?q=Lagos,Nigeria&output=embed"
+              loading="lazy"
+              title="Location map">
+            </iframe>
+          </div>
+
+          <form class="contact-form glass-card reveal-right" id="contact-form" method="POST" action="/contact">
+              
+            <label for="">Please fill out this form to enable me know how best to serve you.</label>
+            
+            <input type="text" placeholder="Name" name="name" required>
+          
+            <input type="email" placeholder="Email Address" name="email" required>
+            
+            <span class="optional-tag">(optional)</span>
+            <input type="tel" placeholder="Phone Number" name="phone">
+
+            <select name="project_type" required>
+              <option value="" disabled selected>What do you need?</option>
+              {% for option in project_types %}
+              <option value="{{ option }}">{{ option }}</option>
+              {% endfor %}
+            </select>
+
+            <span class="optional-tag">(optional)</span>
+            <select name="budget">
+              <option value="" disabled selected>Budget</option>
+              <option value="">Prefer not to say</option>
+              <option value="under_100k">Under ₦100,000</option>
+              <option value="100k_500k">₦100,000 – ₦500,000</option>
+              <option value="500k_plus">₦500,000+</option>
+            </select>
+
+            <label>
+              Describe what you need:
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+
+            <button type="submit" class="submit cta-button">Submit</button>
+          </form>
+        </div>
+
+        <p class="contact-alt">Prefer to just explain things in your own words?<br>Skip the form entirely.</p>
+        <a class="email cta-button" href="mailto:hello.kadiri@outlook.com">Email Me</a>
       </div>
     </section>
   </main>
@@ -181,17 +309,21 @@
     <div class="container footer-inner">© 2026 Benjamin Kadiri</div>
   </footer>
 
-  <script src = "{{ url_for('static', filename = 'circles.js') }}"></script>
+  <script defer src="{{ url_for('static', filename = 'circles.js') }}"></script>
 
-  <script src = "{{ url_for('static', filename = 'sidebar.js') }}"></script>
+  <script defer src="{{ url_for('static', filename = 'sidebar.js') }}"></script>
 
-  <script src = "{{ url_for('static', filename = 'circuit.js') }}"></script>
+  <script defer src="{{ url_for('static', filename = 'circuit.js') }}"></script>
 
-  <script src="{{ url_for('static', filename = 'typewriter.js') }}"></script>
+  <script defer src="{{ url_for('static', filename = 'typewriter.js') }}"></script>
 
-  <script src="{{ url_for('static', filename='theme.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='theme.js') }}"></script>
 
-  <script src="{{ url_for('static', filename='reveal.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='reveal.js') }}"></script>
+
+  <script defer src="{{ url_for('static', filename='skillBars.js') }}"></script>
+
+  <script src="{{ url_for('static', filename='carousel.js') }}"></script>
 
 </body>
 </html>

@@ -1,14 +1,19 @@
 
 // --- Canvas setup ---
 const canvas = document.getElementById("bg-canvas");
-const ctx = canvas.getContext("2d");
+const ctx = canvas ? canvas.getContext("2d") : null;
 
 function resizeCanvas() {
+  if (!canvas) return;
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
 }
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
+if (canvas) {
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+} else {
+  console.warn("circuit.js: #bg-canvas not found — skipping circuit background.");
+}
 
 // --- Trace shape generation (circuit-style zigzag) ---
 const GRID = 12;
@@ -111,11 +116,14 @@ function createTrace(col, row) {
   };
 }
 
-const { cols, rows } = getZoneCount();
-const traces = [];
-for (let row = 0; row < rows; row++) {
-  for (let col = 0; col < cols; col++) {
-    traces.push(createTrace(col, row));
+let traces = [];
+if (canvas && ctx) {
+  const { cols, rows } = getZoneCount();
+  traces = [];
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      traces.push(createTrace(col, row));
+    }
   }
 }
 
@@ -193,6 +201,7 @@ function updateTrace(trace) {
 
 // --- Animation loop ---
 function animate() {
+  if (!ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < traces.length; i++) {
@@ -203,4 +212,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-animate();
+if (ctx && traces.length) {
+  animate();
+}

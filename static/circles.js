@@ -1,5 +1,9 @@
 function createPageBackground() {
   const canvas = document.getElementById("page-canvas");
+  if (!canvas) {
+    console.warn("circles.js: #page-canvas not found — skipping background.");
+    return;
+  }
   const ctx = canvas.getContext("2d");
 
   function resizeCanvas() {

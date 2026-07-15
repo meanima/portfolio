@@ -45,6 +45,7 @@ let titleIndex = 0;
 
 function cycleTitles() {
   const current = titles[titleIndex];
+  if (!line3 || !line3.parentElement) return;
   line3.parentElement.appendChild(cursor);
 
   typeText(line3, current, 60, () => {
@@ -58,6 +59,7 @@ function cycleTitles() {
 }
 
 function startSequence() {
+  if (!line1 || !line1.parentElement || !line2 || !line2.parentElement) return;
   line1.parentElement.appendChild(cursor);
   typeText(line1, greeting, 60, () => {
     line2.parentElement.appendChild(cursor);
@@ -67,4 +69,8 @@ function startSequence() {
   });
 }
 
-startSequence();
+if (line1 && line2 && line3) {
+  startSequence();
+} else {
+  console.warn("typewriter.js: terminal elements not found — skipping typewriter sequence.");
+}

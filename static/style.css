@@ -58,12 +58,12 @@ a {
   text-decoration: none;
 }
 
-/* .container {
-  /*width: min(1100px, calc(100% - 32px));*/
+.container {
+  width: min(1100px, calc(100% - 32px));
   /*width: 90%;
   margin: 0 auto;
-  overflow: hidden;
-} */
+  overflow: hidden;*/
+} 
 
 .navbar, .sidebar, .logo {
   display: flex;
@@ -514,7 +514,7 @@ a {
 .resume, .email {
   display: block;
   width:fit-content;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
 }
 
 .resume.cta-button:hover, .email.cta-button:hover  {

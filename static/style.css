@@ -14,6 +14,8 @@
   --c7: #ffffff;
   --c8: aqua;
   --overlay-bg: #858585;
+  --foot-header: #425751;
+  --foot-hover: #ffcc23;
 }
 
 [data-theme="dark"] {
@@ -98,7 +100,7 @@ a {
   width: min(1100px, calc(100% - 40px));*/
   margin: 0 auto;
   padding: 0 20px;
-} 
+}
 
 .navbar, .sidebar, .logo {
   display: flex;
@@ -439,6 +441,10 @@ a {
   display: inline-block; /* so transform/transition actually apply correctly on this wrapper */
 }
 
+p.hero-description.glass-card.reveal-right.is-visible {
+  margin-right: 0;
+}
+
 .cta-button {
   display: inline-flex;
   align-items: center;
@@ -504,6 +510,10 @@ a {
   margin: 0;
   display: grid;
   gap: 1.5rem;
+}
+
+.hero, .section-inner{
+  padding: 0 40px 0 80px;
 }
 
 .section-inner h2 {
@@ -879,8 +889,9 @@ a {
 }
 
 .footer {
+  margin: 0 0 0 42px;
   width: 100%;
-  padding: 1.6rem 0 1rem;
+  padding: 1.6rem 3rem 1rem 1rem;
   text-align: center;
   color: var(--overlay-bg);
   font-size: 0.65rem;
@@ -898,7 +909,7 @@ a {
 }
 
 .footer-col h4 {
-  color: var(--c2);
+  color: var(--foot-header);
   font-size: .85rem;
   margin-bottom: .7rem;
 }
@@ -921,8 +932,12 @@ a {
   transition: color 0.3s;
 }
 
-.footer-col a:hover {
-  color: var(--c2);
+.footer-col:hover, .footer p:hover {
+  color: var(--foot-header);
+}
+
+.footer li:hover, .footer a:hover, .footer-col p:hover {
+  color: var(--foot-hover);
 }
 
 .footer-socials {
@@ -935,6 +950,7 @@ a {
 }
 
 .footer hr {
+  border-top: 1px dashed var(--foot-header);
   margin-bottom: .6rem;
 }
 

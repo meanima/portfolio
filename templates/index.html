@@ -100,7 +100,7 @@
       </div>
     </section>
 
-    <hr>
+    <hr class="reveal-left">
 
     <section id="about" class="section">
       <div class="container section-inner reveal">
@@ -126,7 +126,7 @@
       <a class="cta-button resume reveal" href="{{ url_for('static', filename='files/kadiri_resume.pdf') }}" download>Download Resume </a>
     </section>
 
-    <hr>
+    <hr class="reveal-left">
 
     <section id="projects" class="section">
       <div class="container section-inner">
@@ -164,7 +164,7 @@
       </div>
     </section>
 
-    <hr>
+    <hr class="reveal-left">
 
     <section id="skills" class="section">
       <div class="container section-inner">
@@ -215,7 +215,7 @@
       </div>
     </section>
 
-    <hr>
+    <hr class="reveal-left">
 
     <section id="reviews" class="section">
       <div class="container section-inner">
@@ -244,7 +244,7 @@
       </div>
     </section>
 
-    <hr>
+    <hr class="reveal-left">
 
     <section id="contact" class="section">
       <div class="container section-inner contact-section">
@@ -282,11 +282,14 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer-grid">
+  <footer class="footer reveal">
+    <div class="footer-grid reveal-right">
       <div class="footer-col brand-col">
         <h4>Minima</h4>
-        <p>From Data to Decisionsons..</p>
+        
+        <a href="#home">
+          <img class="brand-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        </a>
 
         <div class="footer-socials">
           <a href="https://github.com/meanima" target="_blank">
@@ -304,6 +307,8 @@
             <i class="fab fa-twitter"></i>
           </a>
         </div>
+
+        <p>.. From Data to Decisions.</p>
       </div>
 
       <div class="footer-col">
@@ -343,9 +348,9 @@
 
     </div>
 
-    <hr>
+    <hr class="reveal-right">
 
-    <div class="footer-bottom">
+    <div class="footer-bottom reveal-left">
       <p>
         &copy; 2026 Benjamin Kadiri. All rights reserved.<br>Developed by <strong>Benjamin Kadiri</strong>, with extensive assistance from <strong>Claude</strong>.
       </p>

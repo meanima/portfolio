@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benjamin Kadiri - Portfolio</title>
+
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.svg') }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon.svg') }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
@@ -98,7 +102,7 @@
 
     <hr>
 
-    <section id="about" class="section section-light">
+    <section id="about" class="section">
       <div class="container section-inner reveal">
         <h2>About</h2>
         <p class="reveal-left">{{ about.hook }}</p>
@@ -124,7 +128,7 @@
 
     <hr>
 
-    <section id="projects" class="section section-dark">
+    <section id="projects" class="section">
       <div class="container section-inner">
         <h2 class="reveal-left">Projects</h2>
         {% for project in projects %}
@@ -162,7 +166,7 @@
 
     <hr>
 
-    <section id="skills" class="section section-light">
+    <section id="skills" class="section">
       <div class="container section-inner">
         <h2 class="reveal-left">Skills</h2>
 
@@ -213,7 +217,7 @@
 
     <hr>
 
-    <section id="reviews" class="section section-dark">
+    <section id="reviews" class="section">
       <div class="container section-inner">
         <h2 class="reveal-left">What People Say</h2>
 
@@ -242,17 +246,9 @@
 
     <hr>
 
-    <section id="contact" class="section section-dark">
+    <section id="contact" class="section">
       <div class="container section-inner contact-section">
         <h2>Get in Touch</h2>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, msg in messages %}
-            <div class="flash-message flash-{{ category }}">{{ msg }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        <p>If you'd like to collaborate or want help with a data project, send an email or fill out the form below.</p>
 
         <div class="contact-flex">
           <div class="contact-map glass-card reveal-left">
@@ -263,50 +259,97 @@
             </iframe>
           </div>
 
-          <form class="contact-form glass-card reveal-right" id="contact-form" method="POST" action="/contact">
+          <div class="contact-brief">
+            <div class=" contact-form glass-card reveal-right">
+              <h3>Have a project in mind?</h3>
+              <p class="contact-desc">
+                Click below to fill out a short project brief. 
+                <br>All data is structured for rapid assessment!
+              </p>
               
-            <label for="">Please fill out this form to enable me know how best to serve you.</label>
-            
-            <input type="text" placeholder="Name" name="name" required>
-          
-            <input type="email" placeholder="Email Address" name="email" required>
-            
-            <span class="optional-tag">(optional)</span>
-            <input type="tel" placeholder="Phone Number" name="phone">
+              <a href="https://forms.gle/aVCC758moUfJw7Tw9" target="_blank" class="brief-btn glass-card" style="text-align: center; display: block; margin: 2rem auto;">
+                Open Project Brief Form
+              </a>
+            </div>
 
-            <select name="project_type" required>
-              <option value="" disabled selected>What do you need?</option>
-              {% for option in project_types %}
-              <option value="{{ option }}">{{ option }}</option>
-              {% endfor %}
-            </select>
-
-            <span class="optional-tag">(optional)</span>
-            <select name="budget">
-              <option value="" disabled selected>Budget</option>
-              <option value="">Prefer not to say</option>
-              <option value="under_100k">Under ₦100,000</option>
-              <option value="100k_500k">₦100,000 – ₦500,000</option>
-              <option value="500k_plus">₦500,000+</option>
-            </select>
-
-            <label>
-              Describe what you need:
-              <textarea name="message" rows="4" required></textarea>
-            </label>
-
-            <button type="submit" class="submit cta-button">Submit</button>
-          </form>
+            <div class="direct-mail">
+              <p class="contact-alt">Prefer to just explain things in your own words?<br>Skip the form entirely.</p>
+              <a class="email cta-button" href="mailto:hello.kadiri@outlook.com">Email Me</a>
+            </div>
+          </div>
         </div>
-
-        <p class="contact-alt">Prefer to just explain things in your own words?<br>Skip the form entirely.</p>
-        <a class="email cta-button" href="mailto:hello.kadiri@outlook.com">Email Me</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">© 2026 Benjamin Kadiri</div>
+    <div class="footer-grid">
+      <div class="footer-col brand-col">
+        <h4>Minima</h4>
+        <p>From Data to Decisionsons..</p>
+
+        <div class="footer-socials">
+          <a href="https://github.com/meanima" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/ibenjamean" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          </a>
+          <a href="https://discord.com/users/@ibenjamean" target="_blank">
+            <i class="fab fa-discord"></i>
+          </a>
+          </a>
+          <a href="https://twitter.com/ibenjamean" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#review">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+        
+      <div class="footer-col">
+        <h4>Specialties</h4>
+        <ul>
+          <li>Data Science & Analytics</li>
+          <li>Machine Learning Models</li>
+          <li>Security</li>
+          <li>Web Application Dev</li>
+        </ul>
+      </div>
+        
+      <div class="footer-col">
+        <h4>Toolkit</h4>
+        <ul>
+          <li><a href="https://www.anaconda.com/products/navigator" target="_blank">Jupyter / Anaconda</a></li>
+          <li><a href="https://colab.research.google.com/" target="_blank">Google Colab</a></li>
+          <li><a href="https://www.python.org/" target="_blank">Python</a>
+          <li><a href="https://github.com/" target="_blank">Git</a></li>
+          <li><a href="https://excel.cloud.microsoft/en-us/" target="_blank">Microsoft Excel</a></li>
+          <li><a href="https://www.microsoft.com/en-us/power-platform/products/power-bi/downloads" target="_blank">Microsoft Power BI</a></li>
+          <li><a href="https://www.postgresql.org/" target="_blank">SQL</a>
+          <li><a href="https://code.visualstudio.com/" target="_blank">VS Code</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+      <p>
+        &copy; 2026 Benjamin Kadiri. All rights reserved.<br>Developed by <strong>Benjamin Kadiri</strong>, with extensive assistance from <strong>Claude</strong>.
+      </p>
+    </div>
   </footer>
 
   <script defer src="{{ url_for('static', filename = 'circles.js') }}"></script>

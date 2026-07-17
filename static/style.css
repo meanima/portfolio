@@ -28,6 +28,8 @@
 
 html {
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 #page-canvas {
@@ -35,8 +37,10 @@ html {
   top: 0;
   left: 0;
   right: 0;
-  width: fit-content;
-  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  height: 100dvh;
   z-index: -1;
 }
 
@@ -51,13 +55,29 @@ html {
 
 body {
   margin: 0;
-  padding-top: 0;
-  padding-left: 42px;
+  padding: 0;
   background-color: var(--c7);
   color: var(--c4);
   font-family: Inter, system-ui, sans-serif;
   line-height: 1.6;
-  /* overflow-x: hidden; */
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-x: none;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  overflow-x: hidden;
+  padding-left: 42px;
+  transition: padding-left 0.25s ease;
+}
+
+.sidebar.expanded ~ main {
+  padding-left: 120px;
 }
 
 hr {
@@ -90,6 +110,7 @@ a {
   top: 0;
   left: 0;
   height: 100vh;
+  height: 100dvh;
   width: 42px;
   box-shadow: 2px 0 8px var(--c5);
   justify-content: space-between;
@@ -97,12 +118,12 @@ a {
   padding: 3rem 0 3.5rem;
   z-index: 20;
   overflow: hidden; /* hides labels until there's room to show them */
+  transition: width 0.25s ease;
 }
 
 .sidebar.expanded {
   width: 120px; /* wide enough for icon + label side by side */
   align-items: center;
-  transition: ease-in .2s;
   /* padding-left: 16px; */
 }
 
@@ -149,7 +170,12 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 1s ease;
+  transition: transform 0.25s ease;
+}
+
+.sidebar-toggle .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
 }
 
 .sidebar-toggle:hover {
@@ -159,7 +185,6 @@ a {
 }
 
 .sidebar.expanded .sidebar-toggle .arrow {
-  display: inline-block;
   transform: rotate(180deg); /* arrow flips to point left when expanded */
 }
 
@@ -171,7 +196,7 @@ a {
   margin: auto;
 }
 
-.sidebar.expanded.sidebar-nav {
+.sidebar.expanded .sidebar-nav {
   width: 90%;
   margin: auto;
 }
@@ -205,14 +230,17 @@ a {
 
 .sidebar-nav a .label, .sidebar-logo .label, .theme-nav .label, .sidebar-nav-item .label {
   opacity: 0;
-  width: 0;
+  max-width: 0;
+  transform: translateX(-6px);
   overflow: hidden;
-  transition: opacity 0.2s ease, width 0.2s ease;
+  white-space: nowrap;
+  transition: opacity 0.25s ease, max-width 0.25s ease, transform 0.25s ease;
 }
 
 .sidebar.expanded .sidebar-nav a .label, .sidebar.expanded .sidebar-logo .label, .sidebar.expanded .theme-nav .label, .sidebar.expanded .sidebar-nav-item .label {
   opacity: 1;
-  width: auto;
+  max-width: 90px;
+  transform: translateX(0);
 }
 
 .sidebar.expanded .sidebar-nav a .label, .sidebar.expanded .theme-nav .label, .sidebar.expanded .sidebar-nav-item .label {
@@ -655,7 +683,7 @@ a {
 }
 
 .cert-content {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -1007,6 +1035,10 @@ a {
     width: 90%;
   }
 
+  .cert-content {
+    width: 100%;
+  }
+
   .cert {
     width: 180px;
     height: 115px;
@@ -1025,6 +1057,26 @@ a {
 
 
 @media (max-width: 640px) {
+
+  body {
+    padding-left: 0;
+  }
+
+  main {
+    padding-left: 0;
+  }
+
+  .sidebar.expanded ~ main {
+    padding-left: 0;
+  }
+
+  .sidebar {
+    width: 42px;
+  }
+
+  .sidebar.expanded {
+    width: 110px;
+  }
 
   .header-inner {
     /*align-items: flex-start;*/

@@ -999,7 +999,12 @@ p.hero-description.glass-card.reveal-right.is-visible {
   margin: 2rem 0 2rem 25%;
 }
 
+.footer-bottom {
+  margin-left: 0;
+}
+
 .footer-bottom .brand-logo {
+  margin-left: 0;
   box-shadow:0 6px 18px rgba(255, 255, 255, 0.4);
 }
 

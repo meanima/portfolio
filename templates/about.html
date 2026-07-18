@@ -124,7 +124,7 @@
             <h3>My Resume</h3>
               {% if about.resume_url %}
             <div class="notebook-embed glass-card reveal" style="margin-top: 1rem;">
-              <iframe src="{{ url_for('static', filename=about.resume_url) }}" loading="lazy" title="{{ about.title }} notebook" style="background-color: white; min-height: 100vh;"></iframe>
+              <iframe src="{{ url_for('static', filename=about.resume_url) }}" loading="lazy" title="{{ about.title }} notebook" style="background-color: white; min-height: 70%;"></iframe>
             </div>
             {% endif %}
           </div>

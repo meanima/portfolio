@@ -196,7 +196,7 @@ a {
   width: 36px;
   height: 36px;
   border-radius: 50%;object-fit:cover; 
-  border:2px solid rgba(255,255,255,0.06); 
+  border:.3px solid var(--c8); 
   box-shadow:0 6px 18px rgba(0,0,0,0.4);
 }
 
@@ -936,7 +936,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 .footer {
   margin: 0 0 0 42px;
   width: 100%;
-  padding: 1.6rem 3rem 1rem 1rem;
+  padding: 1.6rem 3rem 1rem .5rem;
   text-align: center;
   color: var(--overlay-bg);
   font-size: 0.65rem;
@@ -996,7 +996,11 @@ p.hero-description.glass-card.reveal-right.is-visible {
 
 .footer hr {
   border-top: 1px dashed var(--foot-header);
-  margin-bottom: .6rem;
+  margin: 2rem 0 2rem 25%;
+}
+
+.footer-bottom .brand-logo {
+  box-shadow:0 6px 18px rgba(255, 255, 255, 0.4);
 }
 
 

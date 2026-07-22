@@ -374,7 +374,7 @@ a {
 
 .hero-image {
   width:40%;
-  border-radius:50%;
+  border-radius: 24px;
   object-fit:cover;
   border: 2px solid var(--c8);
   transition: transform .6s;

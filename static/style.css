@@ -13,9 +13,9 @@
   --c6: #000000;
   --c7: #ffffff;
   --c8: aqua;
-  --overlay-bg: #858585;
   --foot-header: #425751;
   --foot-hover: #ffcc23;
+  --overlay-bg: #808080; /* dark, semi-transparent version of the old white overlay */
   --c9: #ffffff;
 }
 
@@ -26,7 +26,7 @@
   --c5: #3a3e44;       /* terminal/panel background: a lighter dark, for contrast against the page */
   --c6: #ffffff;
   --c7: var(--c1);   /* page background flips to your dark tone */
-  /*--overlay-bg: #808080; /* dark, semi-transparent version of the old white overlay */
+  --overlay-bg: #858585;
   --c9: #000000;
 }
 
@@ -484,7 +484,6 @@ a {
   max-width: 500px;
   font-weight: bold;
   color: var(--c4);
-  /* background-color: var(--overlay-bg); */
   padding: 0.4rem 0.6rem;
 }
 
@@ -504,7 +503,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
   padding: 14px 24px;
   border-radius: 999px;
   background: transparent;
-  border: 2px solid var(--c2);
+  border: 2px solid var(--overlay-bg);
   color: var(--c2);
   font-weight: 600;
   transition: transform .6s ease, background .6s ease;
@@ -550,14 +549,9 @@ p.hero-description.glass-card.reveal-right.is-visible {
   transform: translateX(0);
 }
 
-/* .section {
-  position: relative;
-} */
-
 .section-inner {
   position: relative;
-  z-index: 1; /* keeps content above the canvas */
-  /* max-width: 60%; */
+  z-index: 1;
   margin: 4.5rem 0 3rem;
   display: grid;
   gap: 1.5rem;
@@ -604,7 +598,6 @@ p.hero-description.glass-card.reveal-right.is-visible {
 }
 
 .toolkit-card ul {
-  /* list-style: none; */
   list-style: square;
   margin: 0;
   padding-left: 18px;
@@ -638,8 +631,6 @@ p.hero-description.glass-card.reveal-right.is-visible {
 .project-card {
   display: flex;
   gap: 1.3rem;
-  /* justify-content: space-between; */
-  /* align-items: flex-start; */
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.02);
   border-radius: 20px;
@@ -903,10 +894,10 @@ p.hero-description.glass-card.reveal-right.is-visible {
 }
 
 .contact-form {
-  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 300px;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -1057,10 +1048,6 @@ p.hero-description.glass-card.reveal-right.is-visible {
 
 @media (max-width: 1200px) {
 
-  /* .hero-inner{
-    width: 90%
-  } */
-
   .line {
     font-size: 1.25rem;
     line-height: 1.5rem;
@@ -1192,7 +1179,6 @@ p.hero-description.glass-card.reveal-right.is-visible {
   }
 
   .header-inner {
-    /*align-items: flex-start;*/
     padding: 12px 0;
   }
 

@@ -36,7 +36,7 @@ function createPageBackground() {
   function draw() {
     // Paint the current theme's background color first — this is now the
     // page's only background, since sections themselves are transparent.
-    ctx.fillStyle = getThemeColor("--c7");
+    ctx.fillStyle = getThemeColor("--c9");
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     for (const circle of circles) {

@@ -3,11 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Downloaded - Benjamin Kadiri</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <title>Download Resume - Benjamin Kadiri</title>
 
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.svg') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon.svg') }}">
@@ -63,8 +59,7 @@
     <main>
       <div class="resume-page">
         <div class="resume-card glass-card">
-          <!-- <div class="error-emoji"><i class="fa-solid fa-download"></i></div> -->
-          <p class="resume-head">Download Resume!</p>
+          <p class="resume-head">Download my Resume!</p>
 
           <a class="sidebar-nav-item cta-button" href="{{ url_for('static', filename='files/kadiri_resume.pdf') }}" download>
             <span class="icon" data-tooltip="C.V"><i class="fa-solid fa-download"></i></span>

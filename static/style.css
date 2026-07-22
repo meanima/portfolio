@@ -197,6 +197,7 @@ a {
 .brand-logo {
   width: 36px;
   height: 36px;
+  margin-bottom: 1rem;
   border-radius: 50%;object-fit:cover; 
   border:.3px solid var(--c8); 
   box-shadow:0 6px 18px rgba(0,0,0,0.4);
@@ -339,10 +340,10 @@ a {
   transform: scale(1.15);
 }
 
-.hero, .section-inner {
+/* .hero, .section-inner {
   width: 100%;
   padding: 3rem 2rem;
-}
+} */
 
 .hero {
   min-height: 100vh;
@@ -585,13 +586,13 @@ p.hero-description.glass-card.reveal-right.is-visible {
 .toolkit-grid {
   margin: 1.5rem auto 3rem;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-around;
   gap: 20px;
 }
 
 .toolkit-card {
-  min-width: fit-content;
+  min-width: 285px;
   padding: 20px;
   transition: transform .6s;
 }
@@ -604,7 +605,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 
 .toolkit-card ul {
   /* list-style: none; */
-  list-style: circle;
+  list-style: square;
   margin: 0;
   padding-left: 18px;
   color: var(--c4);
@@ -939,7 +940,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 .footer {
   margin: 0 0 0 42px;
   width: 100%;
-  padding: 1.6rem 3rem 1rem .5rem;
+  padding: 1rem 3rem 1rem .5rem;
   text-align: center;
   color: var(--overlay-bg);
   font-size: 0.65rem;
@@ -951,15 +952,15 @@ p.hero-description.glass-card.reveal-right.is-visible {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 2rem;
-  margin: 0 0 1rem;
+  gap: 1rem;
+  margin: 0 0 .6rem;
   font-size: .85rem;
 }
 
 .footer-col h4 {
   color: var(--foot-header);
   font-size: .85rem;
-  margin-bottom: .7rem;
+  margin-bottom: .5rem;
 }
 
 .brand-col p {
@@ -999,7 +1000,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 
 .footer hr {
   border-top: 1px dashed var(--foot-header);
-  margin: 2rem 0 2rem 25%;
+  margin: 1rem 0 1rem 25%;
 }
 
 .footer-bottom {
@@ -1181,6 +1182,11 @@ p.hero-description.glass-card.reveal-right.is-visible {
     width: 42px;
   }
 
+  .sidebar.glass-card {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
   .sidebar.expanded {
     width: 110px;
   }
@@ -1204,12 +1210,8 @@ p.hero-description.glass-card.reveal-right.is-visible {
     min-width: 70%;
   }
 
-  .terminal-body {
-    padding: 20px 20px 24px;
-  }
-
   .cursor {
-    height: 1.25rem;
+    height: 1.1rem;
   }
 
   .terminal-body {
@@ -1217,28 +1219,49 @@ p.hero-description.glass-card.reveal-right.is-visible {
   }
 
   .line {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.4rem;
   }
 
   .hero-description, .section p, .skill-percent, .skill-name, .project-links a, .project-card h4, .cert-credential, .toolkit-card li, .cta-button, .brief-btn {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
   }
 
-  .cta-button, .skill-list span, .project-links a, .brief-btn {
-    padding: 4px 13px;
+  .skill-list span, .project-links a, .brief-btn, .glass-card, .project-links .cta-button {
+    padding: 6px 9px;
+    border-radius: 9px;
+  }
+
+  .cta-button, .project-links .cta-button {
+    padding: 4px 8px;
+    border: 1px solid;
+    border-radius: 9px;
   }
 
   .section-inner h2 {
-    font-size: 1.4rem;
-  }
-
-  .project-title, .toolkit-card h3, .footer-socials a {
     font-size: 1rem;
   }
 
+  .project-title, .toolkit-card h3, .footer-socials a {
+    font-size: .8rem;
+  }
+
   .footer-col p {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
+  }
+
+  .section-inner {
+    margin: 1.5rem 0 1rem;
+    gap: .7rem;
+  }
+
+  .hero, .section-inner{
+    padding: 0 10px 0 50px;
+  }
+
+  .toolkit-grid {
+    margin: 1rem auto;
+    gap: 8px;
   }
 
   .project-block {
@@ -1248,15 +1271,15 @@ p.hero-description.glass-card.reveal-right.is-visible {
 
   .project-card {
     gap: 0.8rem;
-    padding: 18px;
+    padding: 6px;
   }
 
-  .skill-list {
-    gap: 8px;
+  .skills-list {
+    gap: 11px;
   }
 
   .skill-label {
-    margin-bottom: 4px;
+    margin-bottom: 0;
   }
 
   .skill-stars {
@@ -1271,8 +1294,20 @@ p.hero-description.glass-card.reveal-right.is-visible {
     border-radius: 6px;
   }
 
+  .cert-content {
+    width: 100%;
+  }
+
+  .certifications-grid {
+    gap: 10px;
+  }
+
   .carousel {
-    width: 80%;
+    width: 100%;
+  }
+
+  .review-card {
+    padding: 1.5rem 1rem;
   }
 }
 
@@ -1288,23 +1323,6 @@ p.hero-description.glass-card.reveal-right.is-visible {
   .brand-logo {
     width:30px; 
     height:30px;
-  }
-
-  .brand{
-    font-size:0.8rem; 
-    font-weight:700;
-  }
-
-  .site-nav {
-    gap: 12px;
-  }
-
-  .site-nav a {
-    font-size: 0.7rem;
-  }
-
-  .site-nav a::after{
-    bottom:-2px;
   }
 
   .nav-toggle {
@@ -1345,7 +1363,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
   }
 
   .cursor {
-    height: 0.8rem;
+    height: 0.7rem;
     margin-left: 1px;
   }
 
@@ -1356,12 +1374,10 @@ p.hero-description.glass-card.reveal-right.is-visible {
   .hero-description {
     margin: 0;
     max-width: 300px;
-    font-size: 0.6rem;
-    line-height: 0.8rem;
+    line-height: 0.6rem;
   }
 
   .cta-button {
-    padding: 4px 8px;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }
 }

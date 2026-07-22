@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
   about = {
-    "hook": "I'm a Data Engineer, a Data Analyst, & a Machine Learning Developer who transforms raw, chaotic real-world web data into production-ready models and interactive web applications.",
+    "hook": "I'm a Data Engineer, a Data Analyst, and a Machine Learning Developer who transforms raw, chaotic real-world web data into production-ready models and interactive web applications.",
     "philosophy": "Driven by curiosity, precision, and solving messy data problems that others may skip.",
     "story": "Instead of just downloading clean datasets from data sites, I write custom web scrapers to scrape data from sites, source live real-world data from reliable platforms and gorvenmental programs, gather primary data from carrying out actual survey, then fight through these messy data, engineer custom feature hierarchies, and deploy full-stack apps end to end.",
     "toolkit": [
@@ -76,7 +76,7 @@ def home():
 def about():
 
   about = {
-    "hook": "I'm a Data Engineer, a Data Analyst, & a Machine Learning Developer who transforms raw, chaotic real-world web data into production-ready models and interactive web applications.",
+    "hook": "I'm a Data Engineer, a Data Analyst, and a Machine Learning Developer who transforms raw, chaotic real-world web data into production-ready models and interactive web applications.",
     "philosophy": "Driven by curiosity, precision, and solving messy data problems others may skip.",
     "story": "Instead of just downloading clean datasets from data sites, I write custom web scrapers to scrape data from sites, source live real-world data from reliable platforms and gorvenmental programs, gather primary data from carrying out actual survey, then fight through these messy data, engineer custom feature hierarchies, and deploy full-stack apps end to end.",
     "toolkit": [

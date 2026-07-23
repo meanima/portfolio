@@ -93,7 +93,7 @@
             <div class="hero-desc-row">
               <p class="hero-description glass-card reveal-right">I turn data into insights and business-rewarding value by building data-driven solutions using Python, Visualizations, and Machine Learning to help teams make smarter decisions.</p>
               <span class="reveal-right">
-                <a class="cta-button" href="{{ url_for('projects') }}">View my work</a>
+                <a class="cta-button" style="border: 2px solid #ffcc23;" href="{{ url_for('projects') }}">View my work</a>
               </span>
             </div>
           </div>
@@ -121,7 +121,7 @@
             {% endfor %}
           </div>
 
-          <a class="cta-button resume reveal" href="resume">Download Resume </a>
+          <a class="cta-button resume reveal" style="border: 2px solid #ffcc23;" href="resume">Download Resume </a>
 
         </div>
       </section>
@@ -140,9 +140,9 @@
             </div>
 
             <div class="project-links reveal">
-              <a class="cta-button" href="{{ project.live_url }}" target="_blank">Live App ↗</a>
-              <a class="cta-button" href="{{ project.kaggle_url }}" target="_blank">Dataset ↗</a>
-              <a class="cta-button" href="{{ project.github_url }}" target="_blank">GitHub ↗</a>
+              <a class="cta-button" href="{{ project.live_url }}" target="_blank">Live App <span style="color: #ffcc23;">↗</span></a>
+              <a class="cta-button" href="{{ project.kaggle_url }}" target="_blank">Dataset <span style="color: #ffcc23;">↗</span></a>
+              <a class="cta-button" href="{{ project.github_url }}" target="_blank">GitHub <span style="color: #ffcc23;">↗</span></a>
             </div>
 
           </div>

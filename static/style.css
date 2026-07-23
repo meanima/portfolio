@@ -14,7 +14,7 @@
   --c7: #ffffff;
   --c8: aqua;
   --c9: #ffffff;
-  --foot-header: #425751;
+  --foot-header: rgb(199, 196, 196);
   --foot-hover: #ffcc23;
   --overlay-bg: #425751;
 }
@@ -704,7 +704,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 }
 
 .skill-stars {
-  color: var(--overlay-bg);
+  color: var(--foot-hover);
   letter-spacing: 2px;
 }
 

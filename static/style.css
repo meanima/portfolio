@@ -7,7 +7,7 @@
 :root{
   --c1: #303338;
   --c2: #425751;
-  --c3: #ffcc23;
+  --c3: #303338;
   --c4: #111641;
   --c5: rgb(240, 240, 240);
   --c6: #000000;
@@ -16,18 +16,18 @@
   --c9: #ffffff;
   --foot-header: #425751;
   --foot-hover: #ffcc23;
-  --overlay-bg: #808080;
+  --overlay-bg: #425751;
 }
 
 [data-theme="dark"] {
-  --c2: #ffcc23;
+  --c2: #ffffff;
   --c3: #425751;
-  --c4: #ffffff;
+  --c4: rgb(199, 196, 196);
   --c5: #3a3e44;
   --c6: #ffffff;
   --c7: var(--c1);
   --c9: #000000;
-  --overlay-bg: #858585;
+  --overlay-bg: #ffcc23;
 }
 
 html {
@@ -95,7 +95,7 @@ main {
   left: 50%;
   transform: translateX(-50%) translateY(4px);
   background: var(--c2);
-  color: var(--c3);
+  color: var(--c5);
   font-size: 0.6rem;
   font-weight: 600;
   white-space: nowrap;
@@ -130,7 +130,7 @@ hr {
   width: 50%;
   margin-left: calc(25% + 20px);
   border: 0;
-  border-top: 1px dashed var(--c2);
+  border-top: 1px dashed var(--c4);
 }
 
 .project-hr {
@@ -503,8 +503,8 @@ p.hero-description.glass-card.reveal-right.is-visible {
   padding: 14px 24px;
   border-radius: 999px;
   background: transparent;
-  border: 2px solid var(--c2);
-  color: var(--overlay-bg);
+  border: 2px solid var(--overlay-bg);
+  color: var(--c6);
   font-weight: 600;
   transition: transform .6s ease, background .6s ease;
 }
@@ -703,7 +703,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 }
 
 .skill-stars {
-  color: var(--c2);
+  color: var(--overlay-bg);
   letter-spacing: 2px;
 }
 
@@ -817,7 +817,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 }
 
 .review-stars {
-  color: var(--c2);
+  color: var(--overlay-bg);
   letter-spacing: 2px;
 }
 
@@ -903,7 +903,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 }
 
 .brief-btn {
-  border: 1px solid var(--c2);
+  border: 1px solid var(--overlay-bg);
 }
 
 .brief-btn, .email {
@@ -931,9 +931,9 @@ p.hero-description.glass-card.reveal-right.is-visible {
 .footer {
   margin: 0 0 0 42px;
   width: 100%;
-  padding: 1rem 3rem 1.8rem .5rem;
+  padding: 1rem 3rem 2rem .5rem;
   text-align: center;
-  color: var(--overlay-bg);
+  color: var(--foot-header);
   font-size: 0.65rem;
   background: var(--c1);
   border-top: 1px solid var(--c3);
@@ -1220,7 +1220,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
 
   .cta-button, .project-links .cta-button {
     padding: 4px 8px;
-    border: 1px solid var(--c2);
+    border: 1px solid var(--overlay-bg);
     border-radius: 9px;
   }
 
@@ -1232,7 +1232,7 @@ p.hero-description.glass-card.reveal-right.is-visible {
     font-size: .8rem;
   }
 
-  .footer-col p, .footer-socials li {
+  .footer-col {
     font-size: 0.5rem;
   }
 
